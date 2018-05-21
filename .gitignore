@@ -1,3 +1,4 @@
 *.class
 *Test.xml
 *Test.txt
+target/*

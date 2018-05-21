@@ -5,13 +5,16 @@
  */
 package service;
 
+import com.mycompany.zopa.lending.Lender;
+import java.util.List;
+
 /**
  *
  * @author andre
  */
 class CSVParser {
 
-    public void parse(String testcsv) {
+    public List<Lender> parse(String testcsv) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

@@ -5,7 +5,9 @@
  */
 package service;
 
+import com.mycompany.zopa.lending.Lender;
 import com.mycompany.zopa.lending.LendingRequest;
+import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
 /**
@@ -24,8 +26,8 @@ public class LendingRequestBuilder {
         validateLength(args);
         String filename = getFileName(args);
         Float amount = getAmount(args);
-        csvParser.parse(filename);
-        return null;
+        List<Lender> lenders = csvParser.parse(filename);
+        return new LendingRequest(amount, lenders);
     }
 
     private void validateLength(String[] args) {
@@ -47,11 +49,11 @@ public class LendingRequestBuilder {
         if (amtString == null || !StringUtils.isNumeric(amtString)) {
             throwAmountException();
         }
-        Float amt = Float.parseFloat(amtString);
-        if (amt % 100 != 0) {
+        Float amount = Float.parseFloat(amtString);
+        if (amount % 100 != 0) {
             throwAmountException();
         }
-        return 1.0f;
+        return amount;
     }
 
     private void throwAmountException() throws IllegalArgumentException {

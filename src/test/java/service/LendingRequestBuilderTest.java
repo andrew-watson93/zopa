@@ -53,14 +53,13 @@ public class LendingRequestBuilderTest {
         args[0] = "test.csv";
         args[1] = "not a number";
         builder.build(args);
-
     }
 
-    @Test
-    public void build_OkIfNumberOfArgs2AndValid() {
+    @Test(expected = IllegalArgumentException.class)
+    public void build_ThrowsExceptionIfAmtNotMultipleOf100() {
         String[] args = new String[2];
-        args[0] = "file.csv";
-        args[1] = "2500";
+        args[0] = "test.csv";
+        args[1] = "101";
         builder.build(args);
     }
 

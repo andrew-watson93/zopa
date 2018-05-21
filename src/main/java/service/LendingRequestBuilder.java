@@ -30,7 +30,7 @@ public class LendingRequestBuilder {
     private String getFileName(String[] args) {
         String fileName = args[0];
         if (fileName == null || !fileName.endsWith(".csv")) {
-            throw new IllegalArgumentException();
+            throw new IllegalArgumentException("Please provide a valid csv file for the first argument");
         }
         return fileName;
     }
@@ -38,10 +38,17 @@ public class LendingRequestBuilder {
     private Float getAmount(String[] args) {
         String amtString = args[1];
         if (amtString == null || !StringUtils.isNumeric(amtString)) {
-            throw new IllegalArgumentException("Please provide a number for the second argument");
+            throwAmountException();
         }
-//        Float amt = Float.parseFloat(amtString);
+        Float amt = Float.parseFloat(amtString);
+        if (amt % 100 != 0) {
+            throwAmountException();
+        }
         return 1.0f;
+    }
+
+    private void throwAmountException() throws IllegalArgumentException {
+        throw new IllegalArgumentException("Please provide a multiple of 100 for the second argument");
     }
 
 }

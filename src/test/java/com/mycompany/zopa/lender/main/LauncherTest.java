@@ -13,6 +13,7 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import org.mockito.junit.MockitoJUnitRunner;
 import service.ArgsValidationService;
+import service.LendingRequestBuilder;
 
 /**
  *
@@ -24,14 +25,24 @@ public class LauncherTest {
     @Mock
     private ArgsValidationService service;
 
+    @Mock
+    private LendingRequestBuilder builder;
+
     @InjectMocks
     private Launcher launcher;
 
     @Test
-    public void testRunCallsArgValidator() {
+    public void run_CallsArgValidator() {
         String[] args = new String[1];
         launcher.run(args);
         verify(service).validate(eq(args));
+    }
+
+    @Test
+    public void run_CallsLendingRequestBuilder() {
+        String[] args = new String[1];
+        launcher.run(args);
+        verify(builder).build(eq(args));
     }
 
 }

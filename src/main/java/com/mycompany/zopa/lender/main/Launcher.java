@@ -5,7 +5,9 @@
  */
 package com.mycompany.zopa.lender.main;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import service.ArgsValidationService;
+import service.LendingRequestBuilder;
 
 /**
  *
@@ -13,14 +15,15 @@ import service.ArgsValidationService;
  */
 public class Launcher {
 
-    private final ArgsValidationService validationService;
+    @Autowired
+    private ArgsValidationService validationService;
 
-    public Launcher(ArgsValidationService validationService) {
-        this.validationService = validationService;
-    }
+    @Autowired
+    private LendingRequestBuilder requestBuilder;
 
     public void run(String[] args) {
         validationService.validate(args);
+        requestBuilder.build(args);
     }
 
 }

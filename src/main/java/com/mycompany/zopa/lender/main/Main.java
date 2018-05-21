@@ -5,8 +5,6 @@
  */
 package com.mycompany.zopa.lender.main;
 
-import service.ArgsValidationService;
-
 /**
  *
  * @author andre
@@ -14,8 +12,7 @@ import service.ArgsValidationService;
 public class Main {
 
     public static void main(String[] args) {
-        ArgsValidationService validationService = new ArgsValidationService();
-        new Launcher(validationService).run(args);
+        new Launcher().run(args);
     }
 
 }

@@ -5,6 +5,7 @@
  */
 package com.mycompany.zopa.lender.main;
 
+import service.LendingRequestProcessor;
 import com.mycompany.zopa.lending.LendingRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.ArgsValidationService;

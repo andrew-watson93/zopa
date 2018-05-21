@@ -9,6 +9,7 @@ import com.mycompany.zopa.lending.LendingRequest;
 import com.mycompany.zopa.service.LendingRequestBuilder;
 import com.mycompany.zopa.service.LendingRequestProcessor;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -39,7 +40,7 @@ public class LauncherTest {
     private LendingRequest request;
 
     @Before
-    public void setup() throws FileNotFoundException {
+    public void setup() throws FileNotFoundException, IOException {
         args = new String[1];
         request = new LendingRequest();
         when(builder.build(args)).thenReturn(request);
@@ -47,7 +48,7 @@ public class LauncherTest {
     }
 
     @Test
-    public void run_CallsLendingRequestBuilder() throws FileNotFoundException {
+    public void run_CallsLendingRequestBuilder() throws FileNotFoundException, IOException {
         verify(builder).build(eq(args));
     }
 

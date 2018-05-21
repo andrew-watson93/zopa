@@ -12,10 +12,10 @@ package com.mycompany.zopa.lending;
 public class Lender {
 
     private String lender;
-    private Float rate;
-    private Float available;
+    private Double rate;
+    private Double available;
 
-    public Lender(String lender, Float rate, Float available) {
+    public Lender(String lender, Double rate, Double available) {
         this.lender = lender;
         this.rate = rate;
         this.available = available;
@@ -38,28 +38,28 @@ public class Lender {
     /**
      * @return the rate
      */
-    public Float getRate() {
+    public Double getRate() {
         return rate;
     }
 
     /**
      * @param rate the rate to set
      */
-    public void setRate(Float rate) {
+    public void setRate(Double rate) {
         this.rate = rate;
     }
 
     /**
      * @return the available
      */
-    public Float getAvailable() {
+    public Double getAvailable() {
         return available;
     }
 
     /**
      * @param available the available to set
      */
-    public void setAvailable(Float available) {
+    public void setAvailable(Double available) {
         this.available = available;
     }
 

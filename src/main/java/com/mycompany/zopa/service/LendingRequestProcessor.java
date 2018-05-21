@@ -13,8 +13,16 @@ import com.mycompany.zopa.lending.LendingRequest;
  */
 public class LendingRequestProcessor {
 
-    public void process(LendingRequest eq) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public String process(LendingRequest request) {
+        Double maxAmountToBorrow = request.getLenders()
+                .stream()
+                .mapToDouble(l -> l.getAvailable())
+                .sum();
+        if (maxAmountToBorrow < request.getAmount()) {
+            return "Loan not available, insufficent funds";
+        }
+        return "";
+
     }
 
 }

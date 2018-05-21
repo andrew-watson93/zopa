@@ -27,7 +27,7 @@ public class LendingRequestBuilder {
     public LendingRequest build(String[] args) throws FileNotFoundException, IOException {
         validateLength(args);
         String filename = getFileName(args);
-        Float amount = getAmount(args);
+        Double amount = getAmount(args);
         List<Lender> lenders = csvParser.parse(filename);
         return new LendingRequest(amount, lenders);
     }
@@ -46,12 +46,12 @@ public class LendingRequestBuilder {
         return fileName;
     }
 
-    private Float getAmount(String[] args) {
+    private Double getAmount(String[] args) {
         String amtString = args[1];
         if (amtString == null || !StringUtils.isNumeric(amtString)) {
             throwAmountException();
         }
-        Float amount = Float.parseFloat(amtString);
+        Double amount = Double.parseDouble(amtString);
         if (amount % 100 != 0) {
             throwAmountException();
         }

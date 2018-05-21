@@ -34,8 +34,8 @@ public class CSVParser {
     private Lender createLenderFromRecord(CSVRecord r) {
         return new Lender(
                 r.get("Lender"),
-                Float.parseFloat(r.get("Rate")),
-                Float.parseFloat(r.get("Available"))
+                Double.parseDouble(r.get("Rate")),
+                Double.parseDouble(r.get("Available"))
         );
     }
 

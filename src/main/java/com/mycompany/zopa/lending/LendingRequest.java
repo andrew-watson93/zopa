@@ -13,13 +13,13 @@ import java.util.List;
  */
 public class LendingRequest {
 
-    private Float amount;
+    private Double amount;
     private List<Lender> lenders;
 
     public LendingRequest() {
     }
 
-    public LendingRequest(Float amount, List<Lender> lenders) {
+    public LendingRequest(Double amount, List<Lender> lenders) {
         this.amount = amount;
         this.lenders = lenders;
     }
@@ -27,14 +27,14 @@ public class LendingRequest {
     /**
      * @return the amount
      */
-    public Float getAmount() {
+    public Double getAmount() {
         return amount;
     }
 
     /**
      * @param amount the amount to set
      */
-    public void setAmount(Float amount) {
+    public void setAmount(Double amount) {
         this.amount = amount;
     }
 

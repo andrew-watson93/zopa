@@ -102,7 +102,7 @@ public class LendingRequestBuilderTest {
         args[0] = "test.csv";
         args[1] = "100";
         LendingRequest request = builder.build(args);
-        assertThat(request.getAmount(), is(100.0f));
+        assertThat(request.getAmount(), is(100.0));
         assertThat(request.getLenders(), is(lenders));
     }
 

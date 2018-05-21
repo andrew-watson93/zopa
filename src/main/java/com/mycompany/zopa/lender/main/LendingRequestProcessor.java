@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package com.mycompany.zopa.lender.main;
 
 import com.mycompany.zopa.lending.LendingRequest;
 
@@ -11,9 +11,9 @@ import com.mycompany.zopa.lending.LendingRequest;
  *
  * @author andre
  */
-public class LendingRequestBuilder {
+public class LendingRequestProcessor {
 
-    public LendingRequest build(String[] eq) {
+    void process(LendingRequest eq) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

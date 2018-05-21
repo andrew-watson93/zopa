@@ -5,12 +5,15 @@
  */
 package com.mycompany.zopa.lender.main;
 
+import com.mycompany.zopa.lending.LendingRequest;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import static org.mockito.ArgumentMatchers.eq;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
 import service.ArgsValidationService;
 import service.LendingRequestBuilder;
@@ -28,21 +31,37 @@ public class LauncherTest {
     @Mock
     private LendingRequestBuilder builder;
 
+    @Mock
+    private LendingRequestProcessor requestProcessor;
+
     @InjectMocks
     private Launcher launcher;
 
+    private String[] args;
+    private LendingRequest request;
+
+    @Before
+    public void setup() {
+        args = new String[1];
+        request = new LendingRequest();
+        when(builder.build(args)).thenReturn(request);
+        launcher.run(args);
+    }
+
     @Test
     public void run_CallsArgValidator() {
-        String[] args = new String[1];
-        launcher.run(args);
         verify(service).validate(eq(args));
     }
 
     @Test
     public void run_CallsLendingRequestBuilder() {
-        String[] args = new String[1];
-        launcher.run(args);
         verify(builder).build(eq(args));
+    }
+
+    @Test
+    public void run_PassesRequestToRequestProcessor() {
+        verify(requestProcessor).process(eq(request));
+
     }
 
 }

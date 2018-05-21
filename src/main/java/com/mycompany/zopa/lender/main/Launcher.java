@@ -5,6 +5,7 @@
  */
 package com.mycompany.zopa.lender.main;
 
+import com.mycompany.zopa.lending.LendingRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import service.ArgsValidationService;
 import service.LendingRequestBuilder;
@@ -21,9 +22,13 @@ public class Launcher {
     @Autowired
     private LendingRequestBuilder requestBuilder;
 
+    @Autowired
+    private LendingRequestProcessor requestProcessor;
+
     public void run(String[] args) {
         validationService.validate(args);
-        requestBuilder.build(args);
+        LendingRequest request = requestBuilder.build(args);
+        requestProcessor.process(request);
     }
 
 }

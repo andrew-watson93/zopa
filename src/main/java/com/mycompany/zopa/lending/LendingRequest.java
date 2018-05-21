@@ -9,10 +9,6 @@ package com.mycompany.zopa.lending;
  *
  * @author andre
  */
-public class Lender {
-
-    private String lender;
-    private float rate;
-    private int available;
+public class LendingRequest {
 
 }

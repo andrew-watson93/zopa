@@ -6,6 +6,7 @@
 package service;
 
 import com.mycompany.zopa.lending.LendingRequest;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  *
@@ -16,7 +17,7 @@ public class LendingRequestBuilder {
     public LendingRequest build(String[] args) {
         validateLength(args);
         String filename = getFileName(args);
-        float amount = getAmount(args);
+        Float amount = getAmount(args);
         return null;
     }
 
@@ -34,11 +35,12 @@ public class LendingRequestBuilder {
         return fileName;
     }
 
-    private float getAmount(String[] args) {
+    private Float getAmount(String[] args) {
         String amtString = args[1];
-        if (amtString == null) {
-            throw new IllegalArgumentException();
+        if (amtString == null || !StringUtils.isNumeric(amtString)) {
+            throw new IllegalArgumentException("Please provide a number for the second argument");
         }
+//        Float amt = Float.parseFloat(amtString);
         return 1.0f;
     }
 

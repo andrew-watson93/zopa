@@ -47,6 +47,15 @@ public class LendingRequestBuilderTest {
         builder.build(args);
     }
 
+    @Test(expected = IllegalArgumentException.class)
+    public void build_ThrowsExceptionIfSecondArgNotNumeric() {
+        String[] args = new String[2];
+        args[0] = "test.csv";
+        args[1] = "not a number";
+        builder.build(args);
+
+    }
+
     @Test
     public void build_OkIfNumberOfArgs2AndValid() {
         String[] args = new String[2];

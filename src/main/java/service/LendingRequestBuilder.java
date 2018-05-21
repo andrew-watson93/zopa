@@ -13,8 +13,15 @@ import com.mycompany.zopa.lending.LendingRequest;
  */
 public class LendingRequestBuilder {
 
-    public LendingRequest build(String[] eq) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public LendingRequest build(String[] args) {
+        validateLength(args);
+        return null;
+    }
+
+    private void validateLength(String[] args) {
+        if (args.length != 2) {
+            throw new IllegalArgumentException("Please provide 2 arguments - a filename and a amount to borrow");
+        }
     }
 
 }

@@ -5,11 +5,10 @@
  */
 package com.mycompany.zopa.lender.main;
 
-import service.LendingRequestProcessor;
 import com.mycompany.zopa.lending.LendingRequest;
 import org.springframework.beans.factory.annotation.Autowired;
-import service.ArgsValidationService;
 import service.LendingRequestBuilder;
+import service.LendingRequestProcessor;
 
 /**
  *
@@ -18,16 +17,12 @@ import service.LendingRequestBuilder;
 public class Launcher {
 
     @Autowired
-    private ArgsValidationService validationService;
-
-    @Autowired
     private LendingRequestBuilder requestBuilder;
 
     @Autowired
     private LendingRequestProcessor requestProcessor;
 
     public void run(String[] args) {
-        validationService.validate(args);
         LendingRequest request = requestBuilder.build(args);
         requestProcessor.process(request);
     }

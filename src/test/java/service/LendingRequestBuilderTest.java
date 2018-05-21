@@ -11,26 +11,26 @@ import org.junit.Test;
  *
  * @author andre
  */
-public class ArgsValidationServiceTest {
+public class LendingRequestBuilderTest {
 
-    private ArgsValidationService service = new ArgsValidationService();
+    private LendingRequestBuilder builder = new LendingRequestBuilder();
 
     @Test(expected = IllegalArgumentException.class)
     public void validate_ThrowsExceptionIfNumberOfArgsLessThan2() {
         String[] args = new String[1];
-        service.validate(args);
+        builder.build(args);
     }
 
     @Test(expected = IllegalArgumentException.class)
     public void validate_ThrowsExceptionIfNumberOfArgsGreaterThan2() {
         String[] args = new String[3];
-        service.validate(args);
+        builder.build(args);
     }
 
     @Test
     public void validate_OkIfNumberOfArgs2AndValid() {
         String[] args = new String[2];
-        service.validate(args);
+        builder.build(args);
     }
 
 }

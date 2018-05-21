@@ -15,7 +15,6 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
-import service.ArgsValidationService;
 import service.LendingRequestBuilder;
 import service.LendingRequestProcessor;
 
@@ -25,9 +24,6 @@ import service.LendingRequestProcessor;
  */
 @RunWith(MockitoJUnitRunner.class)
 public class LauncherTest {
-
-    @Mock
-    private ArgsValidationService service;
 
     @Mock
     private LendingRequestBuilder builder;
@@ -47,11 +43,6 @@ public class LauncherTest {
         request = new LendingRequest();
         when(builder.build(args)).thenReturn(request);
         launcher.run(args);
-    }
-
-    @Test
-    public void run_CallsArgValidator() {
-        verify(service).validate(eq(args));
     }
 
     @Test

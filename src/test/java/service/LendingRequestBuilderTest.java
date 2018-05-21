@@ -22,14 +22,23 @@ public class LendingRequestBuilderTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void validate_ThrowsExceptionIfNumberOfArgsGreaterThan2() {
+    public void build_ThrowsExceptionIfNumberOfArgsGreaterThan2() {
         String[] args = new String[3];
         builder.build(args);
     }
 
-    @Test
-    public void validate_OkIfNumberOfArgs2AndValid() {
+    @Test(expected = IllegalArgumentException.class)
+    public void build_ThrowsExceptionIfFirstArgNotFilename() {
         String[] args = new String[2];
+        args[0] = "notacsv";
+        builder.build(args);
+    }
+
+    @Test
+    public void build_OkIfNumberOfArgs2AndValid() {
+        String[] args = new String[2];
+        args[0] = "file.csv";
+        args[1] = "2500";
         builder.build(args);
     }
 

@@ -15,6 +15,7 @@ public class LendingRequestBuilder {
 
     public LendingRequest build(String[] args) {
         validateLength(args);
+        String filename = getFileName(args);
         return null;
     }
 
@@ -22,6 +23,14 @@ public class LendingRequestBuilder {
         if (args.length != 2) {
             throw new IllegalArgumentException("Please provide 2 arguments - a filename and a amount to borrow");
         }
+    }
+
+    private String getFileName(String[] args) {
+        String file = args[0];
+        if (!file.endsWith(".csv")) {
+            throw new IllegalArgumentException();
+        }
+        return file;
     }
 
 }

@@ -6,14 +6,25 @@
 package service;
 
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import static org.mockito.ArgumentMatchers.eq;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import static org.mockito.Mockito.verify;
+import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  *
  * @author andre
  */
+@RunWith(MockitoJUnitRunner.class)
 public class LendingRequestBuilderTest {
 
-    private LendingRequestBuilder builder = new LendingRequestBuilder();
+    @Mock
+    private CSVParser csvParser;
+
+    @InjectMocks
+    private LendingRequestBuilder builder;
 
     @Test(expected = IllegalArgumentException.class)
     public void validate_ThrowsExceptionIfNumberOfArgsLessThan2() {
@@ -61,6 +72,15 @@ public class LendingRequestBuilderTest {
         args[0] = "test.csv";
         args[1] = "101";
         builder.build(args);
+    }
+
+    @Test
+    public void build_CallsCSVParserIfArgsValid() {
+        String[] args = new String[2];
+        args[0] = "test.csv";
+        args[1] = "100";
+        builder.build(args);
+        verify(csvParser).parse(eq("test.csv"));
     }
 
 }

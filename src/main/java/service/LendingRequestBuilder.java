@@ -14,10 +14,17 @@ import org.apache.commons.lang3.StringUtils;
  */
 public class LendingRequestBuilder {
 
+    private final CSVParser csvParser;
+
+    public LendingRequestBuilder(CSVParser csvParser) {
+        this.csvParser = csvParser;
+    }
+
     public LendingRequest build(String[] args) {
         validateLength(args);
         String filename = getFileName(args);
         Float amount = getAmount(args);
+        csvParser.parse(filename);
         return null;
     }
 

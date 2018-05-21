@@ -30,7 +30,20 @@ public class LendingRequestBuilderTest {
     @Test(expected = IllegalArgumentException.class)
     public void build_ThrowsExceptionIfFirstArgNotFilename() {
         String[] args = new String[2];
-        args[0] = "notacsv";
+        args[0] = "";
+        builder.build(args);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void build_ThrowsExceptionIfFirstArgNull() {
+        String[] args = new String[2];
+        builder.build(args);
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void build_ThrowsExceptionIfSecondArgNull() {
+        String[] args = new String[2];
+        args[0] = "test.csv";
         builder.build(args);
     }
 

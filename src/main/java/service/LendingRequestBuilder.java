@@ -16,6 +16,7 @@ public class LendingRequestBuilder {
     public LendingRequest build(String[] args) {
         validateLength(args);
         String filename = getFileName(args);
+        float amount = getAmount(args);
         return null;
     }
 
@@ -26,11 +27,19 @@ public class LendingRequestBuilder {
     }
 
     private String getFileName(String[] args) {
-        String file = args[0];
-        if (!file.endsWith(".csv")) {
+        String fileName = args[0];
+        if (fileName == null || !fileName.endsWith(".csv")) {
             throw new IllegalArgumentException();
         }
-        return file;
+        return fileName;
+    }
+
+    private float getAmount(String[] args) {
+        String amtString = args[1];
+        if (amtString == null) {
+            throw new IllegalArgumentException();
+        }
+        return 1.0f;
     }
 
 }

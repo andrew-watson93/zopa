@@ -6,9 +6,10 @@
 package com.mycompany.zopa.lender.main;
 
 import com.mycompany.zopa.lending.LendingRequest;
+import com.mycompany.zopa.service.LendingRequestBuilder;
+import com.mycompany.zopa.service.LendingRequestProcessor;
+import java.io.FileNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
-import service.LendingRequestBuilder;
-import service.LendingRequestProcessor;
 
 /**
  *
@@ -22,7 +23,7 @@ public class Launcher {
     @Autowired
     private LendingRequestProcessor requestProcessor;
 
-    public void run(String[] args) {
+    public void run(String[] args) throws FileNotFoundException {
         LendingRequest request = requestBuilder.build(args);
         requestProcessor.process(request);
     }

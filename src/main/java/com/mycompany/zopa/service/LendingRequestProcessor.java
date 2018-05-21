@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package com.mycompany.zopa.service;
 
 import com.mycompany.zopa.lending.LendingRequest;
 

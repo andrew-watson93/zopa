@@ -3,10 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package service;
+package com.mycompany.zopa.service;
 
 import com.mycompany.zopa.lending.Lender;
 import com.mycompany.zopa.lending.LendingRequest;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.List;
 import org.apache.commons.lang3.StringUtils;
 
@@ -22,7 +24,7 @@ public class LendingRequestBuilder {
         this.csvParser = csvParser;
     }
 
-    public LendingRequest build(String[] args) {
+    public LendingRequest build(String[] args) throws FileNotFoundException, IOException {
         validateLength(args);
         String filename = getFileName(args);
         Float amount = getAmount(args);

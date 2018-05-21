@@ -7,6 +7,10 @@ package service;
 
 import com.mycompany.zopa.lending.Lender;
 import com.mycompany.zopa.lending.LendingRequest;
+import com.mycompany.zopa.service.CSVParser;
+import com.mycompany.zopa.service.LendingRequestBuilder;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import static org.hamcrest.CoreMatchers.is;
@@ -34,39 +38,39 @@ public class LendingRequestBuilderTest {
     private LendingRequestBuilder builder;
 
     @Test(expected = IllegalArgumentException.class)
-    public void validate_ThrowsExceptionIfNumberOfArgsLessThan2() {
+    public void validate_ThrowsExceptionIfNumberOfArgsLessThan2() throws FileNotFoundException, IOException {
         String[] args = new String[1];
         builder.build(args);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void build_ThrowsExceptionIfNumberOfArgsGreaterThan2() {
+    public void build_ThrowsExceptionIfNumberOfArgsGreaterThan2() throws FileNotFoundException, IOException {
         String[] args = new String[3];
         builder.build(args);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void build_ThrowsExceptionIfFirstArgNotFilename() {
+    public void build_ThrowsExceptionIfFirstArgNotFilename() throws FileNotFoundException, IOException {
         String[] args = new String[2];
         args[0] = "";
         builder.build(args);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void build_ThrowsExceptionIfFirstArgNull() {
+    public void build_ThrowsExceptionIfFirstArgNull() throws FileNotFoundException, IOException {
         String[] args = new String[2];
         builder.build(args);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void build_ThrowsExceptionIfSecondArgNull() {
+    public void build_ThrowsExceptionIfSecondArgNull() throws FileNotFoundException, IOException {
         String[] args = new String[2];
         args[0] = "test.csv";
         builder.build(args);
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void build_ThrowsExceptionIfSecondArgNotNumeric() {
+    public void build_ThrowsExceptionIfSecondArgNotNumeric() throws FileNotFoundException, IOException {
         String[] args = new String[2];
         args[0] = "test.csv";
         args[1] = "not a number";
@@ -74,7 +78,7 @@ public class LendingRequestBuilderTest {
     }
 
     @Test(expected = IllegalArgumentException.class)
-    public void build_ThrowsExceptionIfAmtNotMultipleOf100() {
+    public void build_ThrowsExceptionIfAmtNotMultipleOf100() throws FileNotFoundException, IOException {
         String[] args = new String[2];
         args[0] = "test.csv";
         args[1] = "101";
@@ -82,7 +86,7 @@ public class LendingRequestBuilderTest {
     }
 
     @Test
-    public void build_CallsCSVParserIfArgsValid() {
+    public void build_CallsCSVParserIfArgsValid() throws FileNotFoundException, IOException {
         String[] args = new String[2];
         args[0] = "test.csv";
         args[1] = "100";
@@ -91,7 +95,7 @@ public class LendingRequestBuilderTest {
     }
 
     @Test
-    public void build_ReturnsLendingRequestWithRequestedVals() {
+    public void build_ReturnsLendingRequestWithRequestedVals() throws FileNotFoundException, IOException {
         List<Lender> lenders = new ArrayList<>();
         when(csvParser.parse("test.csv")).thenReturn(lenders);
         String[] args = new String[2];

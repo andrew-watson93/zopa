@@ -6,6 +6,9 @@
 package com.mycompany.zopa.lender.main;
 
 import com.mycompany.zopa.lending.LendingRequest;
+import com.mycompany.zopa.service.LendingRequestBuilder;
+import com.mycompany.zopa.service.LendingRequestProcessor;
+import java.io.FileNotFoundException;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -15,8 +18,6 @@ import org.mockito.Mock;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import org.mockito.junit.MockitoJUnitRunner;
-import service.LendingRequestBuilder;
-import service.LendingRequestProcessor;
 
 /**
  *
@@ -38,7 +39,7 @@ public class LauncherTest {
     private LendingRequest request;
 
     @Before
-    public void setup() {
+    public void setup() throws FileNotFoundException {
         args = new String[1];
         request = new LendingRequest();
         when(builder.build(args)).thenReturn(request);
@@ -46,7 +47,7 @@ public class LauncherTest {
     }
 
     @Test
-    public void run_CallsLendingRequestBuilder() {
+    public void run_CallsLendingRequestBuilder() throws FileNotFoundException {
         verify(builder).build(eq(args));
     }
 

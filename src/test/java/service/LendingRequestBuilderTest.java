@@ -89,9 +89,17 @@ public class LendingRequestBuilderTest {
     public void build_CallsCSVParserIfArgsValid() throws FileNotFoundException, IOException {
         String[] args = new String[2];
         args[0] = "test.csv";
-        args[1] = "100";
+        args[1] = "1000";
         builder.build(args);
         verify(csvParser).parse(eq("test.csv"));
+    }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void build_ThrowsExceptionIfAmountLessThan1000() throws IOException {
+        String[] args = new String[2];
+        args[0] = "test.csv";
+        args[1] = "900";
+        builder.build(args);
     }
 
     @Test
@@ -100,9 +108,9 @@ public class LendingRequestBuilderTest {
         when(csvParser.parse("test.csv")).thenReturn(lenders);
         String[] args = new String[2];
         args[0] = "test.csv";
-        args[1] = "100";
+        args[1] = "1000";
         LendingRequest request = builder.build(args);
-        assertThat(request.getAmount(), is(100.0));
+        assertThat(request.getAmount(), is(1000.0));
         assertThat(request.getLenders(), is(lenders));
     }
 

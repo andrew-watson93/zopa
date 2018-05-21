@@ -19,6 +19,8 @@ import org.apache.commons.lang3.StringUtils;
 public class LendingRequestBuilder {
 
     private final CSVParser csvParser;
+    private final Double MIN_LOAN = 1000.0;
+    private final Double MAX_LOAN = 15000.0;
 
     public LendingRequestBuilder(CSVParser csvParser) {
         this.csvParser = csvParser;
@@ -52,14 +54,16 @@ public class LendingRequestBuilder {
             throwAmountException();
         }
         Double amount = Double.parseDouble(amtString);
-        if (amount % 100 != 0) {
+        if (amount % 100 != 0
+                || amount < MIN_LOAN
+                || amount > MAX_LOAN) {
             throwAmountException();
         }
         return amount;
     }
 
     private void throwAmountException() throws IllegalArgumentException {
-        throw new IllegalArgumentException("Please provide a multiple of 100 for the second argument");
+        throw new IllegalArgumentException("Please provide a multiple of 100 between 1000 and 15000 for the second argument");
     }
 
 }
